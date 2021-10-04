@@ -37,10 +37,24 @@ class _Tabs extends State<Tabs> {
     'Romantic',
     'Workout',
     'Party',
-    'Malayalam Hits'
+    'Malayalam Hits',
+    'Hip Hop',
+    'ARR Hits',
+    'Bollywood Hits',
+    'Rock Hits',
   ];
 
-  List<String> playlistSongCount = ['109', '20', '120', '390', '1254'];
+  List<String> playlistSongCount = [
+    '109',
+    '20',
+    '120',
+    '390',
+    '1254',
+    '1254',
+    '1254',
+    '1254',
+    '1254'
+  ];
 
   @override
   Widget build(BuildContext context) {
@@ -104,62 +118,97 @@ class _Tabs extends State<Tabs> {
                     itemCount: playlists.length,
                     itemBuilder: (BuildContext context, int index) {
                       return Container(
-                        child: Column(
-                          children: <Widget>[
-                            Container(
-                              padding: EdgeInsets.only(left: 10.0, right: 10.0),
-                              height: 100,
-                              child: Row(
-                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                children: <Widget>[
-                                  Container(
-                                    width: 80,
-                                    height: 80,
-                                    child: Image.asset(
-                                      'assets/images/image1.jpg',
-                                      fit: BoxFit.cover,
-                                    ),
-                                  ),
-                                  SizedBox(
-                                    width: 10,
-                                  ),
-                                  Container(
-                                    // width:
-                                    //     MediaQuery.of(context).size.width - 100,
-                                    child: Column(
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.start,
-                                      children: <Widget>[
-                                        //SizedBox()
-                                        Container(
-                                          child: Text(
-                                            playlists[index],
-                                            style: TextStyle(
-                                              fontSize: 20,
-                                              fontFamily: 'Khyay',
-                                            ),
+                        child: SingleChildScrollView(
+                          child: Padding(
+                            padding: const EdgeInsets.only(
+                                left: 20.0, right: 20.0, top: 10.0),
+                            child: Column(
+                              children: <Widget>[
+                                Container(
+                                  padding:
+                                      EdgeInsets.only(left: 10.0, right: 10.0),
+                                  height: 50,
+                                  child: Row(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceBetween,
+                                    children: <Widget>[
+                                      Icon(
+                                        Icons.music_note,
+                                        color: Color(0xFF3A6878),
+                                        size: 30,
+                                      ),
+                                      // Container(
+                                      //   width: 80,
+                                      //   height: 80,
+                                      //   child: Image.asset(
+                                      //     'assets/images/image1.jpg',
+                                      //     fit: BoxFit.cover,
+                                      //   ),
+                                      // ),
+                                      SizedBox(
+                                        width: 10,
+                                      ),
+                                      Expanded(
+                                        flex: 2,
+                                        child: Container(
+                                          // width:
+                                          //     MediaQuery.of(context).size.width - 100,
+                                          child: Column(
+                                            crossAxisAlignment:
+                                                CrossAxisAlignment.start,
+                                            children: <Widget>[
+                                              //SizedBox()
+                                              Container(
+                                                child: Text(
+                                                  playlists[index],
+                                                  style: TextStyle(
+                                                    fontSize: 18,
+                                                    fontFamily: 'Khyay',
+                                                  ),
+                                                ),
+                                              ),
+                                              SizedBox(
+                                                height: 5,
+                                              ),
+                                              Container(
+                                                child: Text(
+                                                  playlistSongCount[index],
+                                                  style: TextStyle(
+                                                    fontSize: 15,
+                                                    fontFamily: 'Khyay',
+                                                  ),
+                                                ),
+                                              ),
+                                            ],
                                           ),
                                         ),
-                                        Container(
-                                          child: Text(
-                                            playlistSongCount[index],
-                                            style: TextStyle(
-                                              fontSize: 15,
-                                              fontFamily: 'Khyay',
-                                            ),
-                                          ),
-                                        ),
-                                      ],
-                                    ),
+                                      ),
+                                      Column(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.start,
+                                        children: [
+                                          PopupMenuButton(
+                                        shape: RoundedRectangleBorder(
+                                            borderRadius:
+                                                BorderRadius.circular(10.0)),
+                                          itemBuilder: (context) => [
+                                            PopupMenuItem(child: Text('Add to queue')),
+                                            PopupMenuItem(child: Text('Add to playlist')),
+                                            PopupMenuItem(child: Text('Song Info')),
+                                            PopupMenuItem(child: Text('View Album')),
+                                            PopupMenuItem(child: Text('Share')),
+                                          ])
+                                        ],
+                                      ),
+                                    ],
                                   ),
-                                  Icon(Icons.more_vert),
-                                ],
-                              ),
+                                ),
+                                Divider(
+                                  color: Colors.black,
+                                ),
+                              ],
                             ),
-                            Divider(
-                              color: Colors.black,
-                            ),
-                          ],
+                          ),
                         ),
                       );
                     },
@@ -206,58 +255,86 @@ class _Tabs extends State<Tabs> {
                       itemCount: trackTitle.length,
                       itemBuilder: (BuildContext context, int index) {
                         return Padding(
-                          padding: const EdgeInsets.only(left: 25.0, top: 10.0),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.start,
-                            children: [
-                              Container(
-                                width: 50.0,
-                                height: 50.0,
-                                decoration: BoxDecoration(
-                                  shape: BoxShape.circle,
-                                  image: DecorationImage(
-                                    fit: BoxFit.fill,
-                                    image:
-                                        AssetImage('assets/images/image1.jpg'),
+                          padding: const EdgeInsets.only(
+                              left: 15.0, top: 10, right: 15.0),
+                          child: SingleChildScrollView(
+                            child: Column(
+                              children: [
+                                Container(
+                                  child: Row(
+                                    mainAxisAlignment: MainAxisAlignment.start,
+                                    children: [
+                                      Container(
+                                        width: 50.0,
+                                        height: 50.0,
+                                        decoration: BoxDecoration(
+                                          shape: BoxShape.circle,
+                                          image: DecorationImage(
+                                            fit: BoxFit.fill,
+                                            image: AssetImage(
+                                                'assets/images/image1.jpg'),
+                                          ),
+                                        ),
+                                      ),
+                                      SizedBox(
+                                        width: 10.0,
+                                      ),
+                                      Column(
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.start,
+                                        children: [
+                                          Text(
+                                            trackTitle[index],
+                                            style: TextStyle(
+                                              fontFamily: 'Khyay',
+                                              fontSize: 15.0,
+                                              color: Color(0xFF3A6878),
+                                            ),
+                                          ),
+                                          SizedBox(
+                                            height: 5.0,
+                                          ),
+                                          Text(
+                                            trackArtist[index],
+                                            style: TextStyle(
+                                              fontFamily: 'Khyay',
+                                              fontSize: 15.0,
+                                              color: Color(0xFF3A6878),
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+                                      Spacer(),
+                                      PopupMenuButton(
+                                        shape: RoundedRectangleBorder(
+                                            borderRadius:
+                                                BorderRadius.circular(10.0)),
+                                          itemBuilder: (context) => [
+                                            PopupMenuItem(child: Text('Add to queue')),
+                                            PopupMenuItem(child: Text('Add to playlist')),
+                                            PopupMenuItem(child: Text('Song Info')),
+                                            PopupMenuItem(child: Text('View Album')),
+                                            PopupMenuItem(child: Text('Share')),
+                                          ])
+                                      // IconButton(
+                                      //   icon: Icon(
+                                      //     Icons.more_vert,
+                                      //     color: Color(0xFF3A6878),
+                                      //   ),
+                                      //   onPressed: () {},
+                                      // ),
+                                    ],
                                   ),
                                 ),
-                              ),
-                              SizedBox(
-                                width: 10.0,
-                              ),
-                              Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Text(
-                                    trackTitle[index],
-                                    style: TextStyle(
-                                      fontFamily: 'Khyay',
-                                      fontSize: 15.0,
-                                      color: Color(0xFF3A6878),
-                                    ),
-                                  ),
-                                  SizedBox(
-                                    height: 5.0,
-                                  ),
-                                  Text(
-                                    trackArtist[index],
-                                    style: TextStyle(
-                                      fontFamily: 'Khyay',
-                                      fontSize: 15.0,
-                                      color: Color(0xFF3A6878),
-                                    ),
-                                  ),
-                                ],
-                              ),
-                              Spacer(),
-                              IconButton(
-                                icon: Icon(
-                                  Icons.more_vert,
-                                  color: Color(0xFF3A6878),
+                                SizedBox(
+                                  height: 5,
                                 ),
-                                onPressed: () {},
-                              ),
-                            ],
+                                Divider(
+                                  color: Colors.black,
+                                  height: 10,
+                                ),
+                              ],
+                            ),
                           ),
                         );
                       },

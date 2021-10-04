@@ -75,8 +75,10 @@ flutter:
   # example:
   fonts:
     - family: Khyay
+    #- family: Railway
       fonts:
         - asset: assets/fonts/Khyay-Regular.ttf
+        #- asset: assets/fonts/Railway-Regular.ttf
   #       - asset: fonts/Schyler-Italic.ttf
   #         style: italic
   #   - family: Trajan Pro

@@ -115,6 +115,11 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
+  Widget appBarTitle = new Text("Melomaniac",
+                    style: TextStyle(
+                      color: Color(0xFF3A6878),
+                      fontFamily: 'Khyay',));
+  Icon actionIcon = new Icon(Icons.search);
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -138,18 +143,40 @@ class _HomeState extends State<Home> {
                 AppBar(
                   backgroundColor: Colors.transparent,
                   elevation: 0,
-                  title: Text(
-                    'Melomaniac',
-                    style: TextStyle(
-                      color: Color(0xFF3A6878),
-                      fontFamily: 'Khyay',
-                    ),
-                  ),
+                  title: appBarTitle,
+                  // title: Text(
+                  //   appBarTitle
+                  //   ),
+                  // ),
                   actions: [
-                    Icon(
-                      Icons.search,
-                      color: Color(0XFF5F5D5D),
-                    ),
+                    new IconButton(
+                      icon: actionIcon,
+                      color: Colors.black,
+                      onPressed:(){
+                        setState(() {
+                          if (this.actionIcon.icon == Icons.search) {
+                            this.actionIcon = new Icon(Icons.close);
+                            this.appBarTitle = new TextField(
+                              style: new TextStyle(
+                                color: Colors.black,
+                              ),
+                              decoration: new InputDecoration(
+                                prefixIcon: new Icon(Icons.search, color: Colors.black),
+                                hintText: "Search...",
+                                hintStyle: new TextStyle(color: Colors.black),
+                              ),
+                            );
+                          } else {
+                            this.actionIcon = new Icon(Icons.search);
+                            this.appBarTitle = new Text("Melomaniac",
+                            style: TextStyle(
+                              color: Color(0xFF3A6878),
+                              fontFamily: 'Khyay',
+                            ));
+                          }
+                        });
+                      
+        } ,),
                     SizedBox(
                       width: 10.0,
                     ),
