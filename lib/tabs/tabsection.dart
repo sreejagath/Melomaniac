@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:melomaniac_musicplayer/main.dart';
+import 'package:bottom_drawer/bottom_drawer.dart';
 
 class Tabs extends StatefulWidget {
   @override
@@ -188,16 +190,26 @@ class _Tabs extends State<Tabs> {
                                             MainAxisAlignment.start,
                                         children: [
                                           PopupMenuButton(
-                                        shape: RoundedRectangleBorder(
-                                            borderRadius:
-                                                BorderRadius.circular(10.0)),
-                                          itemBuilder: (context) => [
-                                            PopupMenuItem(child: Text('Add to queue')),
-                                            PopupMenuItem(child: Text('Add to playlist')),
-                                            PopupMenuItem(child: Text('Song Info')),
-                                            PopupMenuItem(child: Text('View Album')),
-                                            PopupMenuItem(child: Text('Share')),
-                                          ])
+                                              shape: RoundedRectangleBorder(
+                                                  borderRadius:
+                                                      BorderRadius.circular(
+                                                          10.0)),
+                                              itemBuilder: (context) => [
+                                                    PopupMenuItem(
+                                                        child: Text(
+                                                            'Add to queue')),
+                                                    PopupMenuItem(
+                                                        child: Text(
+                                                            'Add to playlist')),
+                                                    PopupMenuItem(
+                                                        child:
+                                                            Text('Song Info')),
+                                                    PopupMenuItem(
+                                                        child:
+                                                            Text('View Album')),
+                                                    PopupMenuItem(
+                                                        child: Text('Share')),
+                                                  ])
                                         ],
                                       ),
                                     ],
@@ -283,14 +295,28 @@ class _Tabs extends State<Tabs> {
                                         crossAxisAlignment:
                                             CrossAxisAlignment.start,
                                         children: [
-                                          Text(
-                                            trackTitle[index],
-                                            style: TextStyle(
-                                              fontFamily: 'Khyay',
-                                              fontSize: 15.0,
-                                              color: Color(0xFF3A6878),
+                                          TextButton(
+                                            onPressed: () {
+                                              // _controller.open();
+                                            },
+                                            child: Text(
+                                              trackTitle[index],
+                                              style: TextStyle(
+                                                fontFamily: 'Khyay',
+                                                fontSize: 15.0,
+                                                color: Color(0xFF3A6878),
+                                              ),
                                             ),
                                           ),
+
+                                          // Text(
+                                          //   trackTitle[index],
+                                          //   style: TextStyle(
+                                          //     fontFamily: 'Khyay',
+                                          //     fontSize: 15.0,
+                                          //     color: Color(0xFF3A6878),
+                                          //   ),
+                                          // ),
                                           SizedBox(
                                             height: 5.0,
                                           ),
@@ -306,16 +332,23 @@ class _Tabs extends State<Tabs> {
                                       ),
                                       Spacer(),
                                       PopupMenuButton(
-                                        shape: RoundedRectangleBorder(
-                                            borderRadius:
-                                                BorderRadius.circular(10.0)),
+                                          shape: RoundedRectangleBorder(
+                                              borderRadius:
+                                                  BorderRadius.circular(10.0)),
                                           itemBuilder: (context) => [
-                                            PopupMenuItem(child: Text('Add to queue')),
-                                            PopupMenuItem(child: Text('Add to playlist')),
-                                            PopupMenuItem(child: Text('Song Info')),
-                                            PopupMenuItem(child: Text('View Album')),
-                                            PopupMenuItem(child: Text('Share')),
-                                          ])
+                                                PopupMenuItem(
+                                                    child:
+                                                        Text('Add to queue')),
+                                                PopupMenuItem(
+                                                    child: Text(
+                                                        'Add to playlist')),
+                                                PopupMenuItem(
+                                                    child: Text('Song Info')),
+                                                PopupMenuItem(
+                                                    child: Text('View Album')),
+                                                PopupMenuItem(
+                                                    child: Text('Share')),
+                                              ])
                                       // IconButton(
                                       //   icon: Icon(
                                       //     Icons.more_vert,
@@ -372,15 +405,91 @@ class _Tabs extends State<Tabs> {
                                   crossAxisSpacing: 10.0,
                                   mainAxisSpacing: 10.0),
                           children: List.generate(trackTitle.length,
-                              (index) => _buildTrack(index))))
+                              (index) => _buildTrack(index)))),
                 ]),
               ),
             ]),
+          ),
+          
+        ],
+      ),
+    );
+  }
+  Widget _buildBottomDrawer(BuildContext context) {
+    return BottomDrawer(
+      header: _buildBottomDrawerHead(context),
+      body: _buildBottomDrawerBody(context),
+      headerHeight: _headerHeight,
+      drawerHeight: _bodyHeight,
+      color: Colors.lightBlue,
+      controller: _controller,
+    );
+  }
+
+  Widget _buildBottomDrawerHead(BuildContext context) {
+    return Container(
+      height: _headerHeight,
+      child: Column(
+        children: [
+          Padding(
+            padding: EdgeInsets.only(
+              left: 10.0,
+              right: 10.0,
+              top: 10.0,
+            ),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: _buildButtons('', 1, 2),
+            ),
+          ),
+          Spacer(),
+          Divider(
+            height: 1.0,
+            color: Colors.grey,
           ),
         ],
       ),
     );
   }
+
+  Widget _buildBottomDrawerBody(BuildContext context) {
+    return Container(
+      width: double.infinity,
+      height: _bodyHeight,
+      child: SingleChildScrollView(
+        child: Column(
+          children: _buildButtons('Body', 1, 25),
+        ),
+      ),
+    );
+  }
+
+  List<Widget> _buildButtons(String prefix, int start, int end) {
+    List<Widget> buttons = [];
+    for (int i = start; i <= end; i++)
+      buttons.add(TextButton(
+        child: Text(
+          '$prefix Button $i',
+          style: TextStyle(
+            fontSize: 15.0,
+            color: Colors.black,
+          ),
+        ),
+        onPressed: () {
+          setState(() {
+            _button = '$prefix Button $i';
+          });
+        },
+      ));
+    return buttons;
+  }
+
+  String _button = 'None';
+  double _headerHeight = 60.0;
+  double _bodyHeight = 180.0;
+  BottomDrawerController _controller = BottomDrawerController();
+
+
 }
 
 _buildTrack(int index) {
